@@ -1,0 +1,44 @@
+//using API handling here
+
+//Using appwrite here for backend services(open source)
+
+//using routing
+
+//using redux , redux-toolkit
+
+//using state management
+
+//using TinyMCE(open source) - text editor documentation
+
+//for rendering html on webpage - using html-react-parser (html parsing)
+
+//using react-hook-form to handle input froms
+
+//using environment variables
+
+//Creating .env file to store environment variable
+
+//1. Create Vite App
+2. Install dependencies
+           i) Install Redux Toolkit
+           ii) Install React Redux
+           ii) Install React Router Dom
+           ii) Install appwrite
+           ii) Install tinyMCE
+           ii) install html-react-parser
+           ii) Install React hook form
+3. Test Server (npm run dev)
+4.. Setup Environment Variables 
+5. git ignore for .env file
+6. Initialize  Environment Variables (appWrite)
+           a) Create Project
+           b) Create DataBase
+           c) Create Collection
+           d) Create Attributes (title, content, featuredImage, status, userID)
+           e) Create Index (status)
+           f) Create Bucket / Storage (Images)
+7. Configure Environment Varibales
+
+
+
+

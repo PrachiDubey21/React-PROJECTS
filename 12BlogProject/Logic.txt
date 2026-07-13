@@ -1,3 +1,4 @@
+
 //using API handling here
 
 //Using appwrite here for backend services(open source)
@@ -39,6 +40,8 @@
            f) Create Bucket / Storage (Images)
 7. Configure Environment Varibales
 
+
+use of forwardref
 
 
 

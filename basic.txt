@@ -1,0 +1,796 @@
+//-------------------------------------------------------------------------
+//React JS is a JavaScript library developed by Meta that is used to build fast
+//,interactive,and user-friendly user interfaces (UI) for web applications.
+//-------------------------------------------------------------------------
+
+
+
+
+//-------------------------------------------------------------------------
+//It works on a component-based architecture, 
+//where each part of the UI is treated as a separate unit. 
+//These components can be reused, updated, and managed independently.
+
+//It works on simple principle  { WRITE ONCE , USE EVERYWHERE }
+//-------------------------------------------------------------------------
+
+
+
+
+//-------------------------------------------------------------------------
+//Why to learn ?
+//Use to build UI
+//It makes it easy to manage and build "complex" frontend
+//At the end it compiles to HTML , CSS AND JS only
+//-------------------------------------------------------------------------
+
+
+
+
+//-------------------------------------------------------------------------
+//Why was react created?
+//solve problems faced while building large, 
+//dynamic, and fast-changing web applications
+
+//EXAMPLE :- beacuse of phantom/ghost message problem 
+//(Old or unwanted data (messages/UI) still appears on the screen
+//even after state or data has changed.) [ i.e. : NO consistency in UI]
+//-------------------------------------------------------------------------
+
+
+
+
+
+//-------------------------------------------------------------------------
+//React is a library (not a framework)
+//FRAMEWORK - STRICT
+// It provides a complete structure for building applications. 
+//The framework is in control.
+//It calls your code
+//You have to follow its rules and structure
+
+//LIBRARY - COOL
+// It is a collection of pre-written functions or tools that you
+//can use whenever you need.
+//You are in control of the program.
+//You call the library
+//You decide when and where to use it
+//-------------------------------------------------------------------------
+
+
+
+
+
+//-------------------------------------------------------------------------
+//Main Topics to learn
+//Core - state , UI manipulation , JSX
+//Component reusability
+//Props
+//Hooks (how to propagate changes)
+//-------------------------------------------------------------------------
+
+
+
+
+//-------------------------------------------------------------------------
+//Documentation to refer - React.dev
+//-------------------------------------------------------------------------
+
+
+
+
+//-------------------------------------------------------------------------
+//learn
+//For web = react + react-dom
+//For mobile = react + react-native
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+//---------------------------INSTALL----------------------------------------
+//ways to install react app 
+//1) direct
+//   npx create-react-app name (not the best way)
+//   cd name
+//   npm run start
+//   npm run build
+
+//2) USING VITE
+//   npm create vite@latest
+//   cd name
+//   npm run dev
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//react controls UI updation
+//hooks -> Hooks in React are special functions that let you 
+// use state and other React features inside functional components
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//The Virtual DOM (VDOM) is a lightweight copy 
+// of the real DOM used by React to make updates faster and more efficient.
+//-------------------------------------------------------------------------
+
+
+
+
+
+//-------------------------------------------------------------------------
+//for documentation -> React fiber (acdlite github)(VIMP)
+//-------------------------------------------------------------------------
+
+
+
+
+//-------------------------------------------------------------------------
+//In React, hydration means making a page interactive
+//after it is already shown on screen.
+//(adding JavaScript to already existing HTML so it starts working.)
+
+//Hydration is the process where React attaches event handlers 
+//and makes a server-rendered HTML page interactive on the client (browser).
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//In React, reconciliation means updating only the changed 
+// parts of the UI instead of the whole page.
+
+// React creates a new Virtual DOM
+// Compares it with the old Virtual DOM (this is called diffing)
+// Finds what changed
+// Updates only that part in the real DOM
+
+//reconciliation
+//The algorithm React uses to diff one tree(browser tree (DOM)) with 
+// another tree(React tree(createRoot)) to determine 
+// which parts need to be changed.
+
+//Reconciliation is the algorithm behind what is popularly 
+// understood as the "virtual DOM." 
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//In React, Fiber is the internal system 
+// (engine) that makes React faster and smoother.
+//Fiber is React’s new engine that allows it 
+// to split work into small tasks and update UI efficiently.
+
+// We've established that a primary goal of Fiber is to 
+// enable React to take advantage of scheduling. Specifically, 
+// we need to be able to
+
+// pause work and come back to it later.
+// assign priority to different types of work.
+// reuse previously completed work.
+// abort work if it's no longer needed.
+
+// In order to do any of this, we first
+//  need a way to break work down into units. 
+// In one sense, that's what a fiber is.
+//  A fiber represents a unit of work.
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//Props
+//it makes a component reusable
+//In React, props (short for properties) are a way to pass data 
+// from one component to another.
+
+// Think of props like arguments in a function.
+// Props are inputs given to a component so it can display or use that data.
+//-------------------------------------------------------------------------
+ 
+
+
+
+
+
+
+
+//----------------------------IMP CONCEPT-------------------------------------
+//interview imp concept
+
+//how will this code react (without running)
+
+//  const addValue = () => {
+//         setcounter(counter +1);
+//         setcounter(counter +1);
+//         setcounter(counter +1);
+//         setcounter(counter +1);
+//         setcounter(counter +1);
+
+//   }
+
+// Counter increases only by 1
+
+// React uses state batching
+// All these setcounter() calls happen in one render cycle
+// React does NOT update counter immediately
+// Instead, it queues all updates together
+
+
+// Each line uses the same old value of counter
+
+// Example:
+// counter = 0
+// setcounter(counter + 1) → 1
+// setcounter(counter + 1) → still 1
+// setcounter(counter + 1) → still 1
+
+
+
+
+//if we want to use this feature 
+//use functional update
+//In case of functional updater syntax React ensures 
+// that changes are made to the latest state of the count hence each 
+// function gets access to the latest state of the count variable
+
+// Use functional update
+
+// const addValue = () => {
+//   setcounter(prev => prev + 1);
+//   setcounter(prev => prev + 1);
+//   setcounter(prev => prev + 1);
+//   setcounter(prev => prev + 1);
+//   setcounter(prev => prev + 1);
+// }
+
+//prev = latest updated value
+
+
+
+//what about this function 
+// const addValue = () => {
+//   setcounter(prev => prev + 1);
+//   setcounter(prev => prev + 1);
+//   setcounter( prev + 1);
+//   setcounter(prev + 1);
+//   setcounter(prev + 1);
+// }
+
+// Because prev is not defined outside the function
+
+// prev only exists inside:
+// (prev => prev + 1)
+
+//So this will give:
+// ReferenceError: prev is not defined
+
+
+
+
+// What if you meant to mix both styles?
+
+// const addValue = () => {
+//   setcounter(prev => prev + 1); // correct
+//   setcounter(prev => prev + 1); // correct
+//   setcounter(counter + 1);      // uses old value
+//   setcounter(counter + 1);      // uses old value
+// }
+
+// Output in that mixed case
+
+// counter = 0
+
+// prev => prev + 1 → 1
+// prev => prev + 1 → 2
+// counter + 1 → still uses old value (0) → 1
+// again → 1
+
+// Final result = 1 or 2 (depends on batching order (usually 1), but not 4)
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//tailwind commands
+//npm install tailwindcss @tailwindcss/vite
+//vite config -> import tailwindcss from '@tailwindcss/vite'
+//plugin -> tailwindcss(),
+//index.css -> @import "tailwindcss";
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//--------------------------------HOOKS-------------------------------------
+
+//useState -> useState is a React Hook that lets you store and update
+//  data (state) inside a functional component.
+// It helps your UI remember things and update when they change.
+
+// useState is a Hook in React used to add state to functional components.
+// It allows components to store and manage data that can change over time.
+// It returns an array containing the current state value and a
+//  function to update it.
+// When the state is updated, the component automatically re-renders.
+// It helps make the UI dynamic and interactive.
+
+
+
+//use callback -> useCallback is a Hook in React that is used 
+// to memoize a function, meaning it returns the same function
+//  instance across renders unless its dependencies change, 
+// thereby improving performance by preventing unnecessary 
+// function recreation and re-rendering of components.
+
+//it lets you cache a function definiton between re-renders
+
+
+//use effect -> useEffect is a Hook in React that allows functional 
+//components to perform side effects, such as running code after
+//rendering or when certain state or props change, enabling tasks like 
+//data fetching, DOM updates, and subscriptions to be handled efficiently.
+
+// it runs the function inside it whenever the page renders 
+// first-time or dependencies are changed
+
+//it lets you synchronize a component with an external system
+
+
+
+//use ref -> useRef is a Hook in React that allows a functional component
+// to create a mutable reference which persists across renders, 
+// enabling direct access to DOM elements or storing values without
+//  causing re-renders when updated.
+
+//use to take refference of object
+
+
+
+//useID -> useId is a React hook that generates a unique and 
+// stable ID for components.
+// It is mainly used to link elements like label and input and 
+// avoid duplicate IDs when components are reused.
+
+// useId is a React hook used to generate a unique ID.
+// It is mainly used for accessibility purposes (e.g., linking label and input).
+// Prevents duplicate IDs when components are reused multiple times.
+// The generated ID is stable (does not change on re-render).
+// Helps in building clean and reusable components.
+// Works well with server-side rendering (SSR).
+// Should not be used for keys in lists.
+
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+
+// React Router is a library used in React applications
+//  to handle navigation between different pages (components) without 
+// reloading the whole website.
+
+// In a normal website, when you click a link ->
+//  The browser reloads the entire page.
+// But in a React app using React Router ->
+//  Only the required component changes.
+
+//It helps create SPAs where the page does not reload completely.
+
+
+//why do we use it?
+// We use a router in React to manage navigation between 
+// different components in a single-page application without 
+// reloading the entire page. It allows us to map different
+// URLs to specific components, so when a user clicks a link
+// or changes the URL, only the required part of the interface updates. 
+// This makes the application faster, smoother, and more user-friendly,
+// giving it an app-like experience while keeping everything within a 
+// single web page.
+
+//-------------------------------------------------------------------------
+
+
+
+//-------------------------------------------------------------------------
+//we don't use anchor tag here as it refreshes the whole page
+//instead we use link tag from router dom
+//-------------------------------------------------------------------------
+
+
+
+
+//-------------------------------------------------------------------------
+//to install
+// npm install react-router-dom
+//-------------------------------------------------------------------------
+
+
+
+
+
+//-------------------------------------------------------------------------
+//Router Provider in React Router is a component used to supply 
+// the routing configuration (routes, paths, and components) to 
+// the entire React application. It acts as a central place where 
+// all route definitions are managed and then made available to 
+// every component in the app. We use Router Provider to enable navigation,
+// handle dynamic routing, and keep routing logic organized and scalable.
+// It ensures that when the URL changes, the correct component is
+// rendered efficiently without reloading the page, making the 
+// application faster and easier to maintain.
+
+//The Router Provider in React Router takes a prop called router.
+
+//Router Provider is a component in React Router that takes a router prop,
+// which contains all the route configurations of the application.
+// This router object is created using functions like createBrowserRouter
+// and includes paths and their corresponding components
+//-------------------------------------------------------------------------
+
+
+
+
+
+//--------------------------------------------------------------------------
+//for enabling dark theme
+//@custom-variant dark (&:where(.dark, .dark *));
+//--------------------------------------------------------------------------
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//Outlet in React Router is a component used to render child 
+//routes inside a parent route. It acts like a placeholder in 
+//  the parent component where the content of nested routes will be displayed. 
+// When the URL matches a child route, React Router automatically loads that 
+// child component inside the <Outlet /> of the parent. We use Outlet to create
+//  layouts (like header, sidebar, etc.) that stay the same while only the 
+// inner content changes, making the app more organized and efficient.
+//-------------------------------------------------------------------------
+
+
+
+
+
+//-------------------------------------------------------------------------
+//A loader in React Router is a function used to fetch or prepare 
+// data before a route is rendered. It runs automatically when a route
+//  is accessed and ensures that the required data is available before 
+// the component loads. This helps avoid showing empty or loading states
+//  inside the component and makes the app faster and smoother.
+//  We use loaders to handle data fetching at the routing level,
+//  keeping components cleaner and improving overall performance 
+// and user experience.
+//-------------------------------------------------------------------------
+
+
+
+
+
+//-------------------------------------------------------------------------
+// context means a place where data is stored so that it can be 
+// accessed by different parts of your application whenever needed. 
+// In React, context refers to a special mechanism that allows you
+//  to share data globally across components without passing it step-by-step 
+// through props. It acts like a central storage or environment that holds
+//  values such as user details, themes, or settings, and any component inside
+//  that context can directly use that data. This helps avoid unnecessary
+//  complexity and makes the application cleaner and easier to manage.
+
+
+//The Context API in React is a built-in feature that allows you to share 
+// data across multiple components without having to pass props manually
+// at every level (this is called “prop drilling”). Normally, 
+// if you want to send data from a parent component to a deeply nested child,
+// you have to pass it through every intermediate component even if 
+// they don’t need it. The Context API solves this by creating a central place
+// (called a context) where data can be stored and 
+// accessed directly by any component that needs it. 
+// It mainly involves three things: 
+// creating a context using createContext(), 
+// providing the data using a Provider component,
+//  and accessing the data in child components using useContext() or Consumer. 
+// This makes the code cleaner, more maintainable, and easier 
+// to manage when dealing with global data like themes, user information,
+//  authentication status, or language settings.
+
+//Basically we create a global file where data can be accessed from directly
+
+
+//similarly like context api(for react) there is redux 
+// also we have react-redux and redux-toolkit (RTK)
+//zustand
+//-------------------------------------------------------------------------
+
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+//The spread operator (...) is used to expand (spread out) 
+// elements of an array or properties of an object into another array/object.
+
+//example ->const arr1 = [1, 2, 3];
+// const arr2 = [4, 5];
+
+// const result = [...arr1, ...arr2];
+// console.log(result);
+//[1, 2, 3, 4, 5]
+//---------------------------------------------------------------------------
+
+
+
+
+
+//-------------------------------------------------------------------------
+// Local Storage is a feature of the browser that allows web 
+// applications to store data on the user’s device in the form
+//  of key–value pairs. It is part of the Web Storage API and is 
+// mainly used for storing data on the client side without involving
+//  a server. The data stored in local storage does not expire 
+// automatically, which means it remains available even after 
+// refreshing the page, closing the browser, or restarting the system.
+//  Since local storage can only store data in string format, 
+// complex data types like arrays and objects must be converted 
+// into strings using JSON.stringify() before storing and converted
+//  back using JSON.parse() when retrieving. It is widely used in 
+// modern web applications, especially in frameworks like React, 
+// to persist user data such as themes, preferences, and todo lists. 
+// However, since it is not secure, sensitive information like
+//  passwords should not be stored in local storage.
+
+// Key Points
+// Stores data in key–value pairs
+// Data is stored on the client (browser)
+// No expiration time (persistent storage)
+// Stores only strings
+// Uses:
+// setItem() → to store data
+// getItem() → to retrieve data
+// removeItem() → to delete specific data
+// clear() → to delete all data
+// Requires JSON.stringify() and JSON.parse() for objects/arrays
+// Common uses:
+// Saving todos
+// Storing themes (dark/light mode)
+// User preferences
+// Not secure, so avoid storing sensitive data
+//--------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------
+// Redux is a predictable state management library used in
+//  JavaScript applications, especially with React,
+//  to manage global application state in a centralized way.
+
+// Instead of storing data in individual components, 
+// Redux stores all shared data in one central place called the Store.
+// Think of Redux as a central brain of your application that
+//  controls and remembers everything.
+
+//In React, components manage their own state using useState.
+
+// But in large apps:
+
+//  Problems arise:
+// Prop drilling
+// Passing data through many nested components becomes messy.
+// Unpredictable state changes
+// Multiple components can update data in different ways.
+// Hard debugging
+// You don’t know who changed what and when.
+// State duplication
+// Same data stored in multiple components.
+
+// Redux solves this by:
+// Centralizing all state in one place
+// Making state updates controlled and predictable
+// Enforcing a strict pattern for updating data
+
+//Redux Toolkit (RTK) is the official and modern way of 
+// writing Redux logic in React applications. 
+// It is a set of tools provided by the Redux team 
+// to simplify state management and reduce the complexity of
+// traditional Redux. Earlier, Redux required a lot of boilerplate
+// code such as separate files for actions, reducers, and constants,
+// along with complex store setup, which made it difficult
+// to learn and use. RTK solves these problems by providing 
+// built-in functions like configureStore() for easy store creation, 
+// createSlice() to combine reducers and actions in a single place, 
+// and createAsyncThunk() to handle asynchronous operations 
+// like API calls. It also includes Immer internally, which allows
+// developers to write simpler “mutating-like” code while still 
+// maintaining immutability behind the scenes. Because of these improvements,
+//RTK makes Redux faster to develop, easier to understand, and the recommended 
+//standard for managing global state in modern React applications.
+
+
+
+//When Redux was introduced, its setup took more time compared to Context API,
+// and there were also problems in debugging the application. 
+// To solve these issues, developers introduced Redux Toolkit (RTK), 
+// which made setup and debugging much easier using built-in Redux 
+// functions and simplified patterns. Because of this, state management 
+// in React became more efficient and less complex. 
+// That is why Redux Toolkit is now recommended for using 
+// Redux in modern applications, and both Redux and Redux Toolkit 
+// are commonly installed together when working on Redux-based projects.
+
+//redux-toolkit.js.org
+//redux.js.org
+
+
+//React Redux is the official binding library between React and Redux. 
+//It connects a React application with the Redux store so that React 
+//components can access and update global state easily.
+
+
+
+
+//Flux is an application architecture (design pattern) introduced
+//  by Facebook for managing data flow in front-end applications,
+//  especially React.
+
+//Flux is a way of organizing how data moves in an application using a 
+// one-way (unidirectional) data flow.
+
+//Flux Problems with Redux Solutions 
+
+// Problem: Flux had multiple stores, causing scattered and inconsistent state
+// → Solution: Redux uses a single global store, making state
+//  centralized and easy to manage
+
+// Problem: Flux required a dispatcher, adding extra complexity
+// → Solution: Redux removes the dispatcher and uses a simpler dispatch
+//  → reducer flow
+
+// Problem: Debugging in Flux was difficult due to complex data flow
+// → Solution: Redux provides predictable state updates and DevTools,
+//  making debugging easier
+
+// Problem: Data flow in Flux was harder to track despite being unidirectional
+// → Solution: Redux enforces a strict and simple unidirectional 
+// flow (action → reducer → store)
+
+// Problem: Flux structure was complicated and hard for beginners
+// → Solution: Redux offers a simpler and more structured approach
+
+// Problem: State updates in Flux could be less predictable
+// → Solution: Redux uses pure functions (reducers) for consistent 
+// and predictable updates
+
+//--------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------------------
+//some concepts
+
+// Store
+// The store is the central place where the entire application 
+// state is stored. In RTK, it is created using configureStore() 
+// which simplifies setup and includes best practices by default.
+
+//  Reducer
+// A reducer is a function that decides how the state 
+// changes based on an action. In RTK, reducers are written 
+// inside createSlice() and can use simple “mutating” logic thanks to Immer.
+
+// useSelector
+// useSelector is a React hook used to read data from 
+// the Redux store. It allows components to access specific 
+// parts of the state and automatically re-renders when that data changes.
+
+//useDispatch
+// useDispatch is a React hook used to send actions to the 
+// Redux store. It triggers reducers to update the state 
+// based on the dispatched action.
+
+//--------------------------------------------------------------------
+
+
+
+
+
+
+//----------------------------------------------------------------------
+//install
+
+//create react app
+//npm install @reduxjs/toolkit
+//npm install react-redux
+
+//make store
+//src -> app -> store.js
+//                     -> import {configureStore} from '@reduxjs/toolkit'
+//make reducers 
+//src -> feature -> todo(any name) -> todoSlice.js
+//                             -> import {createSlice , nanoid} from '@reduxjs/toolkit'
+
+
+//dispatch uses reducer to change value in store
+
+//----------------------------------------------------------------------
+
+
+
+//------------------------------------------------------------------------
+
+//we use callback so that whenever we click on the button
+//then only it wtill execute
+//otherwise the method will execute as  the project is rendered
+
+//------------------------------------------------------------------------
+
+
+
+
+
+
+//-------------------------------------------------------------------------
+
+//redux is a core library
+//react-redux is its implementation for wiring so that it will work with react
+
+//every application has 1 store called single source of truth
+
+//--------------------------------------------------------------------------
+
+
+
+
+
